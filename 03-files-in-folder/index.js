@@ -4,7 +4,7 @@ const secretFolder = path.join(__dirname, 'secret-folder');
 
 fs.readdir(secretFolder, {withFileTypes: true}, (err, data) => {                                    // reading folder and getting array with dirint objects
     if (err) throw err                                                                              
-    for (file of data) {                                                                            // looping through every dirint obj
+    for (const file of data) {                                                                            // looping through every dirint obj
         if (file.isFile()) {                                                                        // if dirint === file, starting work with it
             const filePath = path.join(secretFolder, file.name);
             const fileExtention = path.extname(filePath);
