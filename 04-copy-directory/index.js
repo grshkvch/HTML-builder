@@ -8,7 +8,7 @@ async function createFolder () {
 }
 
 async function copyDir () {
-    await fs.readdir(files, { withFileTypes: true }, (err, data) => {
+    fs.readdir(files, { withFileTypes: true }, (err, data) => {
         if (err) throw err;
         for (const file of data) {
             fs.promises.copyFile(path.join(files, file.name), path.join(filesCopy, file.name))  

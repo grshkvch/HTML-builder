@@ -8,7 +8,7 @@ const assets = path.join(__dirname, 'assets')
 const projectDistAssets = path.join(__dirname, 'project-dist', 'assets')
 
 async function copyDir (src, dest) {
-    await fs.readdir(src, { withFileTypes: true }, (err, data) => {
+    fs.readdir(src, { withFileTypes: true }, (err, data) => {
         if (err) throw err;
         for (const file of data) {
             if (file.isDirectory()) {
@@ -25,7 +25,7 @@ async function copyDir (src, dest) {
 const stylesFolder = path.join(__dirname, 'styles');
 const bundleCSS = path.join(__dirname, 'project-dist', 'style.css');
 async function toBundle () {
-    await fs.readdir(stylesFolder, {withFileTypes: true}, (err, data) => {
+    fs.readdir(stylesFolder, {withFileTypes: true}, (err, data) => {
         if (err) throw err
         fs.promises.writeFile(bundleCSS, '')
         for (const style of data) {
