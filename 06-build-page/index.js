@@ -52,6 +52,14 @@ async function toCreateHTML () {
     readableStream.on('data', chunk => template += chunk)
     readableStream.on('end', () => {
         let arr = template.split('\r\n')
+        
+        arr.forEach((elem, ind) => {
+            if (elem.indexOf('{{') !== elem.lastIndexOf('{{')) {
+                arr.splice(ind + 1, 0, arr[ind].slice(arr[ind].lastIndexOf('{{')))
+                arr[ind] = arr[ind].slice(0, (arr[ind].lastIndexOf('{{')))
+            }
+        })
+
         arr.forEach((elem, ind) => {
             if (elem.includes('{{')) {
                 let temp = '';
